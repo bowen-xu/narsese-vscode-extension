@@ -16,3 +16,7 @@ For any file with the suffix `*.nal`，the extension highlights the different pa
 ### 0.0.1
 
 Initial release of `narsese`.
+
+### 0.0.3
+
+Fix bug: incorrect display of sentences, whose form is like `(&&, A, B).` or `A.`.
