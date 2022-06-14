@@ -1,0 +1,163 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "narsese",
+	"patterns": [
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#letter"
+		},
+		{
+			"include": "#sentence"
+		},
+		{
+			"include": "#budget"
+		},
+		{
+			"include": "#truth"
+		},
+		{
+			"include": "#tense"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.copula.nal",
+					"match": "(-->|==>|<->|<=>|\\{--|--\\]|\\{-\\]|=/>|=\\\\>|</>|=\\|>|<\\|>)"
+				},
+				{
+					"name": "keyword.control.connector.nal",
+					"match": "(&|\\||-|~|&&|\\|\\||--|&/|&\\||\\{|\\}|\\[|\\]|\\*)"
+				}
+			]
+		},
+		"letter": {
+			"match": "(?<=<.+>)(\\.|!|\\?|@)",
+			"name": "keyword.letter.nal"
+		},
+		"strings": {
+			"name": "string.quoted.double.nal",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.nal",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"patterns": [				
+				{
+					"match": "(').*$\\n?",
+					"name": "comment.line.prime.nal"
+				}
+			]
+		},
+		"punctuations": {
+			"patterns": [
+				{
+					"name": "punctuation.separator.parameter.nal",
+					"match": ","
+				}
+			]		
+		},
+		"variables":
+		{
+			"patterns": [
+				{
+					"name": "variable.parameter.nal",
+					"match": "(\\$|#|\\?)[^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+"
+				}
+			]	
+		},
+		"operations":
+		{
+			"patterns": [
+				{
+					"name": "entity.name.function.nal",
+					"match": "(\\^)[^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+"
+				}
+			]	
+		},
+		"sentence": {
+			"patterns": [
+				{
+					"name": "entity.name.tag.nal",
+					"begin": "<",
+					"end": ">(\\.|!|\\?|@)",
+					"patterns":[
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#punctuations"
+						},
+						{
+							"include": "#variables"
+						},
+						{
+							"include": "#operations"
+						},
+						{
+							"include": "#strings"
+						},
+						{  
+							"name": "variable.parameter.nal",
+							"match": "[^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+"
+						}	
+					]
+				}
+				
+			]
+		},
+		"budget": {
+			"match": "(\\$\\ *)([0]?\\.[0-9]+|1\\.[0]*|1|0)(\\ *;\\ *)([0]?\\.[0]*[1-9]{1}[0-9]*)(\\ *;\\ *)([0]?\\.[0-9]+|1\\.[0]*|1|0)(\\ *\\$)",
+			"captures":{
+				"1": {"name": "entity.name.type.nal"},
+				"2": {"name": "constant.numeric.nal"},
+				"3": {"name": "entity.name.type.nal"},
+				"4": {"name": "constant.numeric.nal"},
+				"5": {"name": "entity.name.type.nal"},
+				"6": {"name": "constant.numeric.nal"},
+				"7": {"name": "entity.name.type.nal"}
+			}
+		},
+		
+		"truth": {
+			"name": "entity.name.type.nal",
+			"match": "(%\\ *)([0]?\\.[0-9]+|1\\.[0]*|1|0)(\\ *;\\ *)([0]?\\.[0]*[1-9]{1}[0-9]*)(\\ *%)",
+			"captures":{
+				"1": {"name": "entity.name.type.nal"},
+				"2": {"name": "constant.numeric.nal"},
+				"3": {"name": "entity.name.type.nal"},
+				"4": {"name": "constant.numeric.nal"},
+				"5": {"name": "entity.name.type.nal"}
+			}
+		},
+		"tense": {
+			"patterns": [
+				{
+					"name": "variable.other.constant.nal",
+					"match": "(:\\|:|:\\\\:|:/:)"
+				},
+				{
+					"name": "variable.other.constant.nal",
+					"match": "(:!)([+-]?[0-9]+)(:)",
+					"captures":{
+						"2": {"name": "constant.numeric.nal"}
+					}
+				}
+
+			]
+			
+		}
+	},
+	"scopeName": "source.nal"
+}

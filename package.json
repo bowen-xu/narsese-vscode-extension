@@ -1,0 +1,30 @@
+{
+    "name": "narsese",
+    "publisher": "bowenxu",
+    "displayName": "narsese",
+    "description": "Narsese Syntax Highlighting",
+    "version": "0.0.2",
+    "engines": {
+        "vscode": "^1.68.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "nal",
+            "aliases": ["narsese", "nal"],
+            "extensions": [".nal"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "nal",
+            "scopeName": "source.nal",
+            "path": "./syntaxes/nal.tmLanguage.json"
+        }]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bowen-xu/narsese-vscode-extension.git"
+    }
+}
