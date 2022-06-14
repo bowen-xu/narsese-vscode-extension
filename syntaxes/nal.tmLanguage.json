@@ -86,6 +86,29 @@
 				}
 			]	
 		},
+		"insede-sentence": {
+			"patterns": [
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#punctuations"
+				},
+				{
+					"include": "#variables"
+				},
+				{
+					"include": "#operations"
+				},
+				{
+					"include": "#strings"
+				},
+				{  
+					"name": "variable.parameter.nal",
+					"match": "[^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+"
+				}	
+			]
+		},
 		"sentence": {
 			"patterns": [
 				{
@@ -94,27 +117,27 @@
 					"end": ">(\\.|!|\\?|@)",
 					"patterns":[
 						{
-							"include": "#keywords"
-						},
-						{
-							"include": "#punctuations"
-						},
-						{
-							"include": "#variables"
-						},
-						{
-							"include": "#operations"
-						},
-						{
-							"include": "#strings"
-						},
-						{  
-							"name": "variable.parameter.nal",
-							"match": "[^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+"
-						}	
+							"include": "#insede-sentence"
+						}
 					]
-				}
-				
+				},
+				{
+					"name": "entity.name.tag.nal",
+					"begin": "\\(",
+					"end": "\\)(\\.|!|\\?|@)",
+					"patterns":[
+						{
+							"include": "#insede-sentence"
+						}
+					]
+				},
+				{
+					"name": "variable.parameter.nal",
+					"match": "([^\\-^\\+^<^>^=^\"^&^\\|^!^\\.^?^@^~^%^;^\\,^:^\\/^\\\\^*^#^$^\\[^\\]^\\{^\\}^\\(^\\)^\\ ]+)(\\.|!|\\?|@)",
+					"captures":{
+						"1": {"name": "variable.parameter.nal"}
+					}
+				}	
 			]
 		},
 		"budget": {
